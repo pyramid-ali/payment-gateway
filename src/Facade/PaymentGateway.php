@@ -11,7 +11,7 @@ class PaymentGateway extends Facade
 
     protected static function getFacadeAccessor()
     {
-        return 'PaymentGateway';
+        return \Alish\PaymentGateway\PaymentGateway::class;
     }
 
 
