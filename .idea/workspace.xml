@@ -2,196 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c31d85bf-4a89-4aed-9439-cfa93e6d0c8a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/payment-gateway.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/payment-gateway.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/payment-gateway.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/payment-gateway.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PaymentGatewayServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/PaymentGatewayServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Auth/Access/Authorizable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Auth/Access/Gate.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Auth/Authenticatable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Auth/CanResetPassword.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Auth/Factory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Auth/Guard.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Auth/Middleware/AuthenticatesRequests.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Auth/MustVerifyEmail.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Auth/PasswordBroker.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Auth/PasswordBrokerFactory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Auth/StatefulGuard.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Auth/SupportsBasicAuth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Auth/UserProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Broadcasting/Broadcaster.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Broadcasting/Factory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Broadcasting/ShouldBroadcast.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Broadcasting/ShouldBroadcastNow.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Bus/Dispatcher.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Bus/QueueingDispatcher.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Cache/Factory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Cache/Lock.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Cache/LockProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Cache/LockTimeoutException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Cache/Repository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Cache/Store.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Config/Repository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Console/Application.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Console/Kernel.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Container/BindingResolutionException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Container/Container.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Container/ContextualBindingBuilder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Cookie/Factory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Cookie/QueueingFactory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Database/Eloquent/CastsAttributes.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Database/Eloquent/CastsInboundAttributes.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Database/Events/MigrationEvent.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Database/ModelIdentifier.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Debug/ExceptionHandler.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Encryption/DecryptException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Encryption/EncryptException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Encryption/Encrypter.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Events/Dispatcher.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Filesystem/Cloud.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Filesystem/Factory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Filesystem/FileExistsException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Filesystem/FileNotFoundException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Filesystem/Filesystem.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Foundation/Application.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Foundation/CachesConfiguration.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Foundation/CachesRoutes.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Hashing/Hasher.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Http/Kernel.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/LICENSE.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Mail/Factory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Mail/MailQueue.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Mail/Mailable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Mail/Mailer.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Notifications/Dispatcher.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Notifications/Factory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Pagination/LengthAwarePaginator.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Pagination/Paginator.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Pipeline/Hub.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Pipeline/Pipeline.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Queue/EntityNotFoundException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Queue/EntityResolver.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Queue/Factory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Queue/Job.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Queue/Monitor.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Queue/Queue.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Queue/QueueableCollection.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Queue/QueueableEntity.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Queue/ShouldQueue.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Redis/Connection.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Redis/Connector.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Redis/Factory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Redis/LimiterTimeoutException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Routing/BindingRegistrar.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Routing/Registrar.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Routing/ResponseFactory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Routing/UrlGenerator.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Routing/UrlRoutable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Session/Session.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Support/Arrayable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Support/DeferrableProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Support/Htmlable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Support/Jsonable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Support/MessageBag.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Support/MessageProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Support/Renderable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Support/Responsable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Translation/HasLocalePreference.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Translation/Loader.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Translation/Translator.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Validation/Factory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Validation/ImplicitRule.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Validation/Rule.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Validation/ValidatesWhenResolved.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/Validation/Validator.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/View/Engine.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/View/Factory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/View/View.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/contracts/composer.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/AggregateServiceProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Arr.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Carbon.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Collection.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Composer.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/ConfigurationUrlParser.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/DateFactory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Enumerable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Env.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/App.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Artisan.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Broadcast.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Bus.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Cache.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Config.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Cookie.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Crypt.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/DB.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Date.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Event.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Facade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/File.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Gate.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Hash.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Http.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Lang.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Log.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Mail.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Notification.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Password.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Queue.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Redirect.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Redis.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Request.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Response.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Route.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Schema.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Session.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Storage.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/URL.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/Validator.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Facades/View.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Fluent.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/HigherOrderCollectionProxy.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/HigherOrderTapProxy.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/HtmlString.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/InteractsWithTime.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/LICENSE.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/LazyCollection.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Manager.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/MessageBag.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/NamespacedItemResolver.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Optional.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Pluralizer.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/ProcessUtils.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/ServiceProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Str.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Stringable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Testing/Fakes/BusFake.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Testing/Fakes/EventFake.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Testing/Fakes/MailFake.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Testing/Fakes/NotificationFake.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Testing/Fakes/PendingMailFake.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Testing/Fakes/QueueFake.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Traits/CapsuleManagerTrait.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Traits/EnumeratesValues.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Traits/ForwardsCalls.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Traits/Localizable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Traits/Macroable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/Traits/Tappable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/ViewErrorBag.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/composer.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/illuminate/support/helpers.php" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -255,7 +67,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Contracts/PaymentGateway.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
@@ -263,6 +75,15 @@
               <folding>
                 <element signature="e#52#89#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="7" selection-start-column="7" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -299,6 +120,11 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <dirStrings>
+      <dir>$PROJECT_DIR$</dir>
+    </dirStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -321,6 +147,7 @@
         <option value="$PROJECT_DIR$/src/Exception/PaymentGatewayCreateException.php" />
         <option value="$PROJECT_DIR$/src/Drivers/Zarinpal.php" />
         <option value="$PROJECT_DIR$/src/Contracts/PaymentGateway.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -440,6 +267,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="add_unversioned_files" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -479,17 +307,18 @@
       <option name="presentableId" value="Default" />
       <updated>1583869365180</updated>
       <workItem from="1583869366655" duration="1721000" />
-      <workItem from="1583871851204" duration="8887000" />
+      <workItem from="1583871851204" duration="9117000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10608000" />
+    <option name="totallyTimeSpent" value="10838000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2562258" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2562258" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -502,7 +331,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.33045357" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.33045357" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -520,9 +349,6 @@
           <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/phpunit.xml.dist">
       <provider selected="true" editor-type-id="text-editor">
@@ -705,6 +531,13 @@
           <folding>
             <element signature="e#52#89#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="7" selection-start-column="7" selection-end-column="7" />
         </state>
       </provider>
     </entry>
