@@ -36,6 +36,9 @@
             "providers": [
                 "Alish\\PaymentGateway\\PaymentGatewayServiceProvider"
             ]
+        },
+        "aliases": {
+            "PaymentGateway": "Alish\\PaymentGateway\\Facade\\PaymentGateway"
         }
     },
     "minimum-stability": "dev",
