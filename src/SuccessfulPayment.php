@@ -22,4 +22,9 @@ class SuccessfulPayment
         return new self($refId);
     }
 
+    public function getRefId(): string
+    {
+        return $this->refId;
+    }
+
 }

@@ -17,7 +17,7 @@ class PaymentGateway extends Manager
      */
     public function getDefaultDriver()
     {
-        $this->config['payment-gateway']['default'];
+        return $this->config['payment-gateway']['default'];
     }
 
     public function createZarinpalDriver()
@@ -28,5 +28,10 @@ class PaymentGateway extends Manager
     public function config(): array
     {
         return $this->config['payment-gateway'];
+    }
+
+    public function gateway()
+    {
+        return $this->getDefaultDriver();
     }
 }

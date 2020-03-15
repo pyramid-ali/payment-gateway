@@ -49,19 +49,9 @@ class Zarinpal implements PaymentGateway
      */
     public function create(int $amount, string $description): PaymentLink
     {
-        $body = [
-            'MerchantID' => $this->merchantId(),
-            'Amount' => $amount,
-            'CallbackURL' => URL::to($this->callback()),
-            'Description' => $description,
-        ];
+        $body = $this->paymentJsonBody($amount, $description);
 
-        $this->mobile ?: $body['Mobile'] = $this->mobile;
-        $this->email ?: $body['Email'] = $this->email;
-
-
-        $response = Http::retry(3, 100)->post($this->endpoint('rest/WebGate/PaymentRequest.json'), $body);
-
+        $response = Http::post($this->endpoint('rest/WebGate/PaymentRequest.json'), $body);
 
         if ($response->successful() && $response['Status'] === 100) {
             $authority = $response['Authority'];
@@ -70,7 +60,21 @@ class Zarinpal implements PaymentGateway
 
 
         throw new PaymentGatewayCreateException($response);
+    }
 
+    protected function paymentJsonBody(int $amount, string $description): array
+    {
+        $body = [
+            'MerchantID' => $this->merchantId(),
+            'Amount' => $amount,
+            'CallbackURL' => URL::to($this->callback()),
+            'Description' => $description,
+        ];
+
+        $this->mobile && $body['Mobile'] = $this->mobile;
+        $this->email && $body['Email'] = $this->email;
+
+        return $body;
     }
 
     /**
@@ -87,7 +91,7 @@ class Zarinpal implements PaymentGateway
             'Authority' => $authority,
         ];
 
-        $response = Http::retry(3, 100)->post($this->endpoint('rest/WebGate/PaymentVerification.json'), $body);
+        $response = Http::post($this->endpoint('rest/WebGate/PaymentVerification.json'), $body);
 
         if ($response->successful() && $response['Status'] === 100) {
             return SuccessfulPayment::make($response['RefID']);
@@ -118,14 +122,14 @@ class Zarinpal implements PaymentGateway
         return $this->config['merchant_id'];
     }
 
-    protected function sandbox(): string
+    protected function sandbox(): bool
     {
-        return $this->config['sandbox'];
+        return isset($this->config['sandbox']) ? $this->config['sandbox'] : false;
     }
 
     protected function zaringate(): ?string
     {
-        return $this->config['zaringate'];
+        return isset($this->config['zaringate']) ? $this->config['zaringate'] : null;
     }
 
     protected function endpoint(string $url): string
