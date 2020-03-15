@@ -29,9 +29,4 @@ class PaymentGateway extends Manager
     {
         return $this->config['payment-gateway'];
     }
-
-    public function gateway()
-    {
-        return $this->getDefaultDriver();
-    }
 }

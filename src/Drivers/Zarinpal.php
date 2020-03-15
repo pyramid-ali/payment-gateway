@@ -150,4 +150,8 @@ class Zarinpal implements PaymentGateway
     }
 
 
+    public function gateway(): string
+    {
+        return 'zarinpal';
+    }
 }

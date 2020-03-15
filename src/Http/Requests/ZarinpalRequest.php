@@ -7,7 +7,7 @@ use Alish\PaymentGateway\Facade\PaymentGateway;
 use Alish\PaymentGateway\SuccessfulPayment;
 use Illuminate\Foundation\Http\FormRequest;
 
-class TransactionCompletedRequest extends FormRequest
+class ZarinpalRequest extends FormRequest
 {
 
     public function authorize(): bool

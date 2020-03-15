@@ -26,4 +26,7 @@ interface PaymentGateway
      * @throws PaymentVerifyException
      */
     public function verify(int $amount, string $authority): SuccessfulPayment;
+
+
+    public function gateway(): string;
 }

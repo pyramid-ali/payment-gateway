@@ -19,6 +19,8 @@ class PaymentGatewayFake implements PaymentGateway
      */
     protected $driver;
 
+    public $paymentLink;
+
     /**
      * @var bool
      */
@@ -40,7 +42,8 @@ class PaymentGatewayFake implements PaymentGateway
         if ($this->shouldThrow) {
             throw new PaymentGatewayCreateException(Http::response('failed', 400));
         }
-        return PaymentLink::build($this->driver, random_int(0, 1000), 'https://'.$this->driver.'.com/pay');
+        $authority = random_int(0, 1000);
+        return $this->paymentLink = PaymentLink::build($this->driver, $authority, $this->link($authority));
     }
 
     /**
@@ -61,5 +64,15 @@ class PaymentGatewayFake implements PaymentGateway
     {
         $this->shouldThrow = true;
         return $this;
+    }
+
+    public function gateway(): string
+    {
+        return 'fake';
+    }
+
+    protected function link(string $authority): string
+    {
+        return 'https://'.$this->driver.'.com/pay/'.$authority;
     }
 }
