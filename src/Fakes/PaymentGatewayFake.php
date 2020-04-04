@@ -60,6 +60,12 @@ class PaymentGatewayFake implements PaymentGateway
         return SuccessfulPayment::make(random_int(0, 1000));
     }
 
+    public function driver(string $driver): self
+    {
+        $this->driver = $driver;
+        return $this;
+    }
+
     public function shouldThrow()
     {
         $this->shouldThrow = true;

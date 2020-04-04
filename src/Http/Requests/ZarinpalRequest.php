@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Requests;
+
+namespace Alish\PaymentGateway\Http\Requests;
 
 use Alish\PaymentGateway\Exception\PaymentVerifyException;
 use Alish\PaymentGateway\Facade\PaymentGateway;
