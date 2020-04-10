@@ -39,6 +39,6 @@ class ZarinpalRequest extends FormRequest
      */
     public function verify(int $amount): SuccessfulPayment
     {
-        return PaymentGateway::driver('zarinpal')->verify($amount);
+        return PaymentGateway::driver('zarinpal')->verify($amount, $this->authority());
     }
 }
