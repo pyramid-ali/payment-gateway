@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Alish\PaymentGateway\Contracts;
-
 
 use Alish\PaymentGateway\Exception\PaymentGatewayCreateException;
 use Alish\PaymentGateway\Exception\PaymentVerifyException;
@@ -26,7 +24,6 @@ interface PaymentGateway
      * @throws PaymentVerifyException
      */
     public function verify(int $amount, string $authority): SuccessfulPayment;
-
 
     public function gateway(): string;
 }

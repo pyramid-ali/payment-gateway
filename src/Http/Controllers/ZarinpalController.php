@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Alish\PaymentGateway\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -8,11 +7,9 @@ use Illuminate\Routing\Controller;
 
 class ZarinpalController extends Controller
 {
-
     public function __invoke(Request $request)
     {
         if ($request->get('Status') === 'OK') {
-
             $authority = $request->get('Authority');
 
             $payment = Payment::retrieve('zarinpal', $authority);
@@ -28,6 +25,7 @@ class ZarinpalController extends Controller
 
             if ($result['ok']) {
                 $payment->succeed($result['ref_id']);
+
                 return redirect()->route('payment.success', ['payment' => $payment]);
             }
 
@@ -35,7 +33,5 @@ class ZarinpalController extends Controller
         }
 
         return redirect()->route('payment.failed');
-
     }
-
 }

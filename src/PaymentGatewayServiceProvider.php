@@ -6,7 +6,6 @@ use Illuminate\Support\ServiceProvider;
 
 class PaymentGatewayServiceProvider extends ServiceProvider
 {
-
     public function boot()
     {
         $this->publishes([
@@ -24,8 +23,7 @@ class PaymentGatewayServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            PaymentGateway::class
+            PaymentGateway::class,
         ];
     }
-
 }

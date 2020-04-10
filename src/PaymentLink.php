@@ -1,12 +1,9 @@
 <?php
 
-
 namespace Alish\PaymentGateway;
-
 
 class PaymentLink
 {
-
     /**
      * @var string
      */
@@ -43,5 +40,4 @@ class PaymentLink
     {
         return $this->authority;
     }
-
 }

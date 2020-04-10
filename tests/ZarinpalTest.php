@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Alish\PaymentGateway\Tests;
 
 use Alish\PaymentGateway\Drivers\Zarinpal;
@@ -15,7 +14,6 @@ use Orchestra\Testbench\TestCase;
 
 class ZarinpalTest extends TestCase
 {
-
     /**
      * @test
      */
@@ -25,7 +23,7 @@ class ZarinpalTest extends TestCase
             'merchant_id' => 'merchanid',
             'sandbox' => false,
             'callback' => 'gateway/zarinpal',
-            'zaringate' => null
+            'zaringate' => null,
         ];
 
         $authority = '00001';
@@ -33,7 +31,6 @@ class ZarinpalTest extends TestCase
         $zarinpal = new Zarinpal($config);
 
         Http::fake(function (Request $request) use ($authority, $config) {
-
             $data = $request->data();
 
             $this->assertArrayHasKey('MerchantID', $data);
@@ -67,7 +64,7 @@ class ZarinpalTest extends TestCase
             'merchant_id' => 'merchanid',
             'sandbox' => false,
             'callback' => 'gateway/zarinpal',
-            'zaringate' => $zaringate
+            'zaringate' => $zaringate,
         ];
 
         $authority = '00001';
@@ -87,7 +84,6 @@ class ZarinpalTest extends TestCase
 
     protected function zarinpalRedirectLinkSchema(string $authority, ?string $zaringate = null)
     {
-
         return 'https://www.zarinpal.com/pg/StartPay/'.$authority.($zaringate ? '/'.$zaringate : '');
     }
 
@@ -100,7 +96,7 @@ class ZarinpalTest extends TestCase
             'merchant_id' => 'merchanid',
             'sandbox' => true,
             'callback' => 'gateway/zarinpal',
-            'zaringate' => null
+            'zaringate' => null,
         ];
 
         $authority = '00001';
@@ -128,7 +124,7 @@ class ZarinpalTest extends TestCase
             'merchant_id' => 'merchanid',
             'sandbox' => true,
             'callback' => 'gateway/zarinpal',
-            'zaringate' => null
+            'zaringate' => null,
         ];
 
         $refID = '00001';
@@ -152,7 +148,7 @@ class ZarinpalTest extends TestCase
     {
         $zarinpal = new Zarinpal([
             'merchant_id' => 'merchanid',
-            'callback' => 'gateway/zarinpal'
+            'callback' => 'gateway/zarinpal',
         ]);
 
         Http::fake(function (Request $request) {
@@ -170,7 +166,7 @@ class ZarinpalTest extends TestCase
     public function if_verify_payment_was_unsuccessful_we_get_error()
     {
         $zarinpal = new Zarinpal([
-            'merchant_id' => 123
+            'merchant_id' => 123,
         ]);
 
         Http::fake(function (Request $request) {

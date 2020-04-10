@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Alish\PaymentGateway\Fakes;
-
 
 use Alish\PaymentGateway\Contracts\PaymentGateway;
 use Alish\PaymentGateway\Exception\PaymentGatewayCreateException;
@@ -13,7 +11,6 @@ use Illuminate\Support\Facades\Http;
 
 class PaymentGatewayFake implements PaymentGateway
 {
-
     /**
      * @var string
      */
@@ -43,6 +40,7 @@ class PaymentGatewayFake implements PaymentGateway
             throw new PaymentGatewayCreateException(Http::response('failed', 400));
         }
         $authority = random_int(0, 1000);
+
         return $this->paymentLink = PaymentLink::build($this->driver, $authority, $this->link($authority));
     }
 
@@ -57,18 +55,21 @@ class PaymentGatewayFake implements PaymentGateway
         if ($this->shouldThrow) {
             throw new PaymentVerifyException(Http::response('failed', 400));
         }
+
         return SuccessfulPayment::make(random_int(0, 1000));
     }
 
     public function driver(string $driver): self
     {
         $this->driver = $driver;
+
         return $this;
     }
 
     public function shouldThrow()
     {
         $this->shouldThrow = true;
+
         return $this;
     }
 

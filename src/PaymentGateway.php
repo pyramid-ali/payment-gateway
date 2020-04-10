@@ -1,15 +1,12 @@
 <?php
 
-
 namespace Alish\PaymentGateway;
-
 
 use Alish\PaymentGateway\Drivers\Zarinpal;
 use Illuminate\Support\Manager;
 
 class PaymentGateway extends Manager
 {
-
     /**
      * Get the default driver name.
      *
