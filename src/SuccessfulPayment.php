@@ -1,12 +1,9 @@
 <?php
 
-
 namespace Alish\PaymentGateway;
-
 
 class SuccessfulPayment
 {
-
     /**
      * @var string
      */
@@ -26,5 +23,4 @@ class SuccessfulPayment
     {
         return $this->refId;
     }
-
 }

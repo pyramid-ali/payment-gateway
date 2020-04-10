@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Alish\PaymentGateway\Drivers;
-
 
 use Alish\PaymentGateway\Contracts\PaymentGateway;
 use Alish\PaymentGateway\Exception\PaymentGatewayCreateException;
@@ -15,7 +13,6 @@ use Illuminate\Support\Str;
 
 class Zarinpal implements PaymentGateway
 {
-
     /**
      * @var array
      */
@@ -55,9 +52,9 @@ class Zarinpal implements PaymentGateway
 
         if ($response->successful() && $response['Status'] === 100) {
             $authority = $response['Authority'];
+
             return PaymentLink::build('zarinpal', $authority, $this->redirectUrl($authority));
         }
-
 
         throw new PaymentGatewayCreateException($response);
     }
@@ -103,12 +100,14 @@ class Zarinpal implements PaymentGateway
     public function setMobile(string $mobile): self
     {
         $this->mobile = $mobile;
+
         return $this;
     }
 
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -135,7 +134,8 @@ class Zarinpal implements PaymentGateway
     protected function endpoint(string $url): string
     {
         $prefix = $this->sandbox() ? 'https://sandbox.' : 'https://www.';
-        return $prefix . $this->url . Str::start($url, '/');
+
+        return $prefix.$this->url.Str::start($url, '/');
     }
 
     public function redirectUrl(string $authority): string
@@ -146,9 +146,8 @@ class Zarinpal implements PaymentGateway
             $suffix = Str::start($this->zaringate(), '/');
         }
 
-        return $this->endpoint('StartPay/' . $authority) . $suffix;
+        return $this->endpoint('StartPay/'.$authority).$suffix;
     }
-
 
     public function gateway(): string
     {

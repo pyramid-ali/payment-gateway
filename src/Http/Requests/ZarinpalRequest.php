@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Alish\PaymentGateway\Http\Requests;
 
 use Alish\PaymentGateway\Exception\PaymentVerifyException;
@@ -10,7 +9,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ZarinpalRequest extends FormRequest
 {
-
     public function authorize(): bool
     {
         return true;
