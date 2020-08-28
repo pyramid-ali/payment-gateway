@@ -20,4 +20,9 @@ return [
         'zaringate' => env('ZARINPAL_ZARINGATE', null),
     ],
 
+    'parsian' => [
+        'pin' => env('PARSIAN_PIN'),
+        'callback' => env('PARSIAN_CALLBACK', 'gateway/parsian'),
+    ]
+
 ];

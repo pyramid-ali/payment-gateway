@@ -53,7 +53,7 @@ class Zarinpal implements PaymentGateway
         if ($response->successful() && $response['Status'] === 100) {
             $authority = $response['Authority'];
 
-            return PaymentLink::build('zarinpal', $authority, $this->redirectUrl($authority));
+            return PaymentLink::build($this->gateway(), $authority, $this->redirectUrl($authority));
         }
 
         throw new PaymentGatewayCreateException($response);

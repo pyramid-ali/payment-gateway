@@ -22,6 +22,11 @@ class PaymentGateway extends Manager
         return new Zarinpal($this->config()['zarinpal']);
     }
 
+    public function createParsianDriver()
+    {
+        return new Zarinpal($this->config()['parsian']);
+    }
+
     public function config(): array
     {
         return $this->config['payment-gateway'];
