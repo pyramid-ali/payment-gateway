@@ -41,7 +41,7 @@ class Parsian implements PaymentGateway
             return PaymentLink::build($this->gateway(), $token, $this->gateLink($token));
         }
 
-        throw new PaymentGatewayCreateException($result->SalePaymentRequestResult->Message);
+        throw new \Exception($result->SalePaymentRequestResult->Message);
     }
 
     public function verify(int $amount, string $authority): SuccessfulPayment
