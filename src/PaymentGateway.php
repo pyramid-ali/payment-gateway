@@ -2,6 +2,7 @@
 
 namespace Alish\PaymentGateway;
 
+use Alish\PaymentGateway\Drivers\Parsian;
 use Alish\PaymentGateway\Drivers\Zarinpal;
 use Illuminate\Support\Manager;
 
@@ -24,7 +25,7 @@ class PaymentGateway extends Manager
 
     public function createParsianDriver()
     {
-        return new Zarinpal($this->config()['parsian']);
+        return new Parsian($this->config()['parsian']);
     }
 
     public function config(): array
