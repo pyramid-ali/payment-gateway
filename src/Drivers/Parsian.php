@@ -5,7 +5,7 @@ namespace Alish\PaymentGateway\Drivers;
 
 
 use Alish\PaymentGateway\Contracts\PaymentGateway;
-use Alish\PaymentGateway\Exception\PaymentGatewayCreateException;
+use Illuminate\Support\Facades\URL;
 use Alish\PaymentGateway\Exception\PaymentVerifyException;
 use Alish\PaymentGateway\PaymentLink;
 use Alish\PaymentGateway\SuccessfulPayment;
@@ -31,7 +31,7 @@ class Parsian implements PaymentGateway
             "LoginAccount" => $this->pin(),
             "Amount" => $amount,
             "OrderId" => $description,
-            "CallBackUrl" => $this->callback()
+            "CallBackUrl" => URL::to($this->callback())
         ];
 
         $result = $this->client->SalePaymentRequest(["requestData" => $body]);
