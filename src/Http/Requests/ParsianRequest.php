@@ -31,17 +31,17 @@ class ParsianRequest extends FormRequest
         return $this->get('status') == 0;
     }
 
-    public function authority(): string
+    public function token(): string
     {
         return $this->get('Token');
     }
 
-    protected function amount(): string
+    public function amount(): string
     {
         return $this->get('Amount');
     }
 
-    protected function rnn(): string
+    public function rnn(): string
     {
         return $this->get('RNN');
     }
