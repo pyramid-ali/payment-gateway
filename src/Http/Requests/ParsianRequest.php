@@ -41,9 +41,9 @@ class ParsianRequest extends FormRequest
         return $this->get('Amount');
     }
 
-    public function rnn(): string
+    public function rrn(): string
     {
-        return $this->get('RNN');
+        return $this->get('RRN');
     }
 
     /**
