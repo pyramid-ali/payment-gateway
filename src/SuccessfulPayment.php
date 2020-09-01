@@ -9,12 +9,12 @@ class SuccessfulPayment
      */
     protected $refId;
 
-    public function __construct(string $refId)
+    public function __construct(?string $refId = null)
     {
         $this->refId = $refId;
     }
 
-    public static function make(string $refId): self
+    public static function make(?string $refId = null): self
     {
         return new self($refId);
     }

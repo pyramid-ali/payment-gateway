@@ -67,7 +67,7 @@ class Parsian extends \Alish\PaymentGateway\PaymentGateway
         $result = $this->confirmClient()->ConfirmPayment(["requestData" => $body]);
 
         if ($result->ConfirmPaymentResult->Status == '0') {
-            return SuccessfulPayment::make('unknown');
+            return SuccessfulPayment::make();
         }
 
         throw new PaymentVerifyException($result->ConfirmPaymentResult->Message, $result->ConfirmPaymentResult->Status);
