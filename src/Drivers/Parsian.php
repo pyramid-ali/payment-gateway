@@ -16,14 +16,23 @@ class Parsian extends \Alish\PaymentGateway\PaymentGateway
 {
     use HasConfig;
 
-    protected $client;
+    protected $saleService = "https://pec.shaparak.ir/NewIPGServices/Sale/SaleService.asmx?WSDL";
 
-    protected $url = "https://pec.shaparak.ir/NewIPGServices/Sale/SaleService.asmx?WSDL";
+    protected $confirmService = "https://pec.shaparak.ir/NewIPGServices/Confirm/ConfirmService.asmx?WSDL";
 
     public function __construct(array $config)
     {
         $this->config = $config;
-        $this->client = new \SoapClient($this->url);
+    }
+
+    protected function saleClient()
+    {
+        return new \SoapClient($this->saleService);;
+    }
+
+    protected function confirmClient()
+    {
+        return new \SoapClient($this->confirmService);;
     }
 
     public function create(int $amount): PaymentLink
@@ -35,7 +44,7 @@ class Parsian extends \Alish\PaymentGateway\PaymentGateway
             "CallBackUrl" => $this->callback()
         ];
 
-        $result = $this->client->SalePaymentRequest(["requestData" => $body]);
+        $result = $this->saleClient()->SalePaymentRequest(["requestData" => $body]);
 
         if (
             $result->SalePaymentRequestResult->Token &&
@@ -55,7 +64,7 @@ class Parsian extends \Alish\PaymentGateway\PaymentGateway
             "Token" => $this->getPayload('token')
         ];
 
-        $result = $this->client->ConfirmPayment(["requestData" => $body]);
+        $result = $this->confirmClient()->ConfirmPayment(["requestData" => $body]);
 
         if ($result->ConfirmPaymentResult->Status == '0') {
             return SuccessfulPayment::make('unknown');
