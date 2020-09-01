@@ -46,7 +46,7 @@ class ZarinpalTest extends TestCase
             return Http::response(['Status' => 100, 'Authority' => $authority], 200);
         });
 
-        $paymentLink = $zarinpal->create(10000, 'description');
+        $paymentLink = $zarinpal->payload(['description' => 'description'])->create(10000);
 
         $this->assertInstanceOf(PaymentLink::class, $paymentLink);
         $this->assertEquals($paymentLink->getAuthority(), $authority);
@@ -75,7 +75,7 @@ class ZarinpalTest extends TestCase
             return Http::response(['Status' => 100, 'Authority' => $authority], 200);
         });
 
-        $paymentLink = $zarinpal->create(10000, 'description');
+        $paymentLink = $zarinpal->payload(['description' => 'description'])->create(10000);
 
         $this->assertInstanceOf(PaymentLink::class, $paymentLink);
         $this->assertEquals($paymentLink->getAuthority(), $authority);
@@ -107,7 +107,7 @@ class ZarinpalTest extends TestCase
             return Http::response(['Status' => 100, 'Authority' => $authority], 200);
         });
 
-        $paymentLink = $zarinpal->create(10000, 'description');
+        $paymentLink = $zarinpal->payload(['description' => 'description'])->create(10000);
 
         $this->assertInstanceOf(PaymentLink::class, $paymentLink);
         $this->assertEquals($paymentLink->getAuthority(), $authority);
@@ -135,7 +135,7 @@ class ZarinpalTest extends TestCase
             return Http::response(['Status' => 100, 'RefID' => $refID], 200);
         });
 
-        $successful = $zarinpal->verify(10000, '01');
+        $successful = $zarinpal->payload(['amount' => 10000, 'authority' => '01'])->verify();
 
         $this->assertInstanceOf(SuccessfulPayment::class, $successful);
         $this->assertEquals($successful->getRefId(), $refID);
@@ -157,7 +157,7 @@ class ZarinpalTest extends TestCase
 
         $this->expectException(PaymentGatewayCreateException::class);
 
-        $zarinpal->create(10000, 'description');
+        $zarinpal->payload(['description' => 'description'])->create(10000);
     }
 
     /**
@@ -175,6 +175,6 @@ class ZarinpalTest extends TestCase
 
         $this->expectException(PaymentVerifyException::class);
 
-        $zarinpal->verify(10000, 'authority');
+        $zarinpal->payload(['amount' => 10000, 'authority' => 'authority'])->verify();
     }
 }

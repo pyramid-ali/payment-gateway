@@ -11,19 +11,22 @@ interface PaymentGateway
 {
     /**
      * @param  int  $amount
-     * @param  string  $description
      * @return PaymentLink
      * @throws PaymentGatewayCreateException
      */
-    public function create(int $amount, string $description): PaymentLink;
+    public function create(int $amount): PaymentLink;
 
     /**
-     * @param  int  $amount
-     * @param  string  $authority
+     * @param array|object $payload
+     * @return self
+     */
+    public function payload($payload): self ;
+
+    /**
      * @return SuccessfulPayment
      * @throws PaymentVerifyException
      */
-    public function verify(int $amount, string $authority): SuccessfulPayment;
+    public function verify(): SuccessfulPayment;
 
     public function gateway(): string;
 }

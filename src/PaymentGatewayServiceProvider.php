@@ -15,15 +15,15 @@ class PaymentGatewayServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->bind(PaymentGateway::class, function ($app) {
-            return new PaymentGateway($app);
+        $this->app->bind(PaymentGatewayManager::class, function ($app) {
+            return new PaymentGatewayManager($app);
         });
     }
 
     public function provides()
     {
         return [
-            PaymentGateway::class,
+            PaymentGatewayManager::class,
         ];
     }
 }

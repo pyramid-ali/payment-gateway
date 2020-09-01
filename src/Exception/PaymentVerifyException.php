@@ -5,10 +5,7 @@ namespace Alish\PaymentGateway\Exception;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Client\Response;
 
-class PaymentVerifyException extends RequestException
+class PaymentVerifyException extends \Exception
 {
-    public function __construct(Response $response)
-    {
-        parent::__construct($response);
-    }
+
 }

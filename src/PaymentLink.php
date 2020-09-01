@@ -4,20 +4,12 @@ namespace Alish\PaymentGateway;
 
 class PaymentLink
 {
-    /**
-     * @var string
-     */
-    protected $authority;
 
-    /**
-     * @var string
-     */
-    protected $link;
+    protected string $authority;
 
-    /**
-     * @var string
-     */
-    protected $gateway;
+    protected string $link;
+
+    protected string $gateway;
 
     public function __construct(string $gateway, string $authority, string $link)
     {

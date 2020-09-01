@@ -5,6 +5,9 @@ namespace Alish\PaymentGateway\Facade;
 use Alish\PaymentGateway\Fakes\PaymentGatewayFake;
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * @method static payload($payload)
+ */
 class PaymentGateway extends Facade
 {
     public static function fake(?string $driver = null)
@@ -16,6 +19,6 @@ class PaymentGateway extends Facade
 
     protected static function getFacadeAccessor()
     {
-        return \Alish\PaymentGateway\PaymentGateway::class;
+        return \Alish\PaymentGateway\PaymentGatewayManager::class;
     }
 }

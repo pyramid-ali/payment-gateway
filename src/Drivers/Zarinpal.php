@@ -2,36 +2,25 @@
 
 namespace Alish\PaymentGateway\Drivers;
 
-use Alish\PaymentGateway\Contracts\PaymentGateway;
+
+use Alish\PaymentGateway\Exception\ConfigNotFoundException;
+use Alish\PaymentGateway\Exception\PayloadNotFoundException;
 use Alish\PaymentGateway\Exception\PaymentGatewayCreateException;
 use Alish\PaymentGateway\Exception\PaymentVerifyException;
+use Alish\PaymentGateway\PaymentGateway;
 use Alish\PaymentGateway\PaymentLink;
 use Alish\PaymentGateway\SuccessfulPayment;
+use Alish\PaymentGateway\Utils\HasConfig;
+use Alish\PaymentGateway\Utils\ZarinpalErrorCodes;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 
-class Zarinpal implements PaymentGateway
+class Zarinpal extends PaymentGateway
 {
-    /**
-     * @var array
-     */
-    protected $config;
+    use HasConfig;
 
-    /**
-     * @var string
-     */
-    protected $mobile;
-
-    /**
-     * @var string
-     */
-    protected $email;
-
-    /**
-     * @var string
-     */
-    protected $url = 'zarinpal.com/pg';
+    protected string $url = 'zarinpal.com/pg';
 
     public function __construct(array $config)
     {
@@ -40,15 +29,17 @@ class Zarinpal implements PaymentGateway
 
     /**
      * @param  int  $amount
-     * @param  string|null  $description
      * @return PaymentLink
+     * @throws ConfigNotFoundException
+     * @throws PayloadNotFoundException
      * @throws PaymentGatewayCreateException
      */
-    public function create(int $amount, string $description): PaymentLink
+    public function create(int $amount): PaymentLink
     {
-        $body = $this->paymentJsonBody($amount, $description);
-
-        $response = Http::post($this->endpoint('rest/WebGate/PaymentRequest.json'), $body);
+        $response = Http::post(
+            $this->endpoint('rest/WebGate/PaymentRequest.json'),
+            $this->paymentJsonBody($amount)
+        );
 
         if ($response->successful() && $response['Status'] === 100) {
             $authority = $response['Authority'];
@@ -56,36 +47,33 @@ class Zarinpal implements PaymentGateway
             return PaymentLink::build($this->gateway(), $authority, $this->redirectUrl($authority));
         }
 
-        throw new PaymentGatewayCreateException($response);
-    }
-
-    protected function paymentJsonBody(int $amount, string $description): array
-    {
-        $body = [
-            'MerchantID' => $this->merchantId(),
-            'Amount' => $amount,
-            'CallbackURL' => URL::to($this->callback()),
-            'Description' => $description,
-        ];
-
-        $this->mobile && $body['Mobile'] = $this->mobile;
-        $this->email && $body['Email'] = $this->email;
-
-        return $body;
+        throw new PaymentGatewayCreateException(ZarinpalErrorCodes::message($this->errorCode($response)), $this->errorCode($response));
     }
 
     /**
      * @param  int  $amount
-     * @param  string  $authority
-     * @return SuccessfulPayment
-     * @throws PaymentVerifyException
+     * @return array
+     * @throws PayloadNotFoundException
+     * @throws ConfigNotFoundException
      */
-    public function verify(int $amount, string $authority): SuccessfulPayment
+    protected function paymentJsonBody(int $amount): array
+    {
+        return array_filter([
+            'MerchantID' => $this->merchantId(),
+            'Amount' => $amount,
+            'CallbackURL' => $this->callback(),
+            'Description' => $this->getPayload('description'),
+            'Mobile' => $this->getPayload('mobile'),
+            'Email' => $this->getPayload('email'),
+        ]);
+    }
+
+    public function verify(): SuccessfulPayment
     {
         $body = [
             'MerchantID' => $this->merchantId(),
-            'Amount' => $amount,
-            'Authority' => $authority,
+            'Amount' => $this->getPayload('amount'),
+            'Authority' => $this->getPayload('authority'),
         ];
 
         $response = Http::post($this->endpoint('rest/WebGate/PaymentVerification.json'), $body);
@@ -94,41 +82,32 @@ class Zarinpal implements PaymentGateway
             return SuccessfulPayment::make($response['RefID']);
         }
 
-        throw new PaymentVerifyException($response);
+        throw new PaymentVerifyException(ZarinpalErrorCodes::message($this->errorCode($response)), $this->errorCode($response));
     }
 
-    public function setMobile(string $mobile): self
+    protected function errorCode($response): ?int
     {
-        $this->mobile = $mobile;
-
-        return $this;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
+        return isset($response['Status']) ? $response['Status'] : null;
     }
 
     protected function callback(): string
     {
-        return $this->config['callback'];
+        return URL::to($this->getConfig('callback'));
     }
 
     protected function merchantId(): string
     {
-        return $this->config['merchant_id'];
+        return $this->getConfig('merchant_id');
     }
 
     protected function sandbox(): bool
     {
-        return isset($this->config['sandbox']) ? $this->config['sandbox'] : false;
+        return $this->getConfig('sandbox', false, false);
     }
 
     protected function zaringate(): ?string
     {
-        return isset($this->config['zaringate']) ? $this->config['zaringate'] : null;
+        return $this->getConfig('zaringate', null, false);
     }
 
     protected function endpoint(string $url): string
