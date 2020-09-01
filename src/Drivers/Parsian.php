@@ -30,7 +30,7 @@ class Parsian extends \Alish\PaymentGateway\PaymentGateway
     {
         $body = [
             "LoginAccount" => $this->pin(),
-            "Amount" => $amount,
+            "Amount" => $amount * 10, // convert toman to rials
             "OrderId" => $this->getPayload('order_id'),
             "CallBackUrl" => $this->callback()
         ];
