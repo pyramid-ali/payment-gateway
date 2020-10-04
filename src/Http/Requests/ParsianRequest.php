@@ -16,14 +16,7 @@ class ParsianRequest extends FormRequest
 
     public function rules(): array
     {
-        return [
-            'status' => 'required',
-            'Token' => 'required',
-            'OrderId' => 'required',
-            'TerminalNo' => 'required',
-            'Amount' => 'required',
-            'RRN' => 'required',
-        ];
+        return [];
     }
 
     public function isOk(): bool
@@ -31,28 +24,18 @@ class ParsianRequest extends FormRequest
         return $this->get('status') == 0;
     }
 
-    public function token(): string
+    public function token(): ?string
     {
         return $this->get('Token');
     }
 
-    public function amount(): string
+    public function amount(): ?string
     {
         return $this->get('Amount');
     }
 
-    public function rrn(): string
+    public function rrn(): ?string
     {
         return $this->get('RRN');
-    }
-
-    /**
-     * @param  int  $amount
-     * @return SuccessfulPayment
-     * @throws PaymentVerifyException
-     */
-    public function verify(): SuccessfulPayment
-    {
-        return PaymentGateway::driver('parsian')->verify($this->amount(), $this->authority());
     }
 }
