@@ -20,6 +20,8 @@ class Parsian extends \Alish\PaymentGateway\PaymentGateway
 
     protected $confirmService = "https://pec.shaparak.ir/NewIPGServices/Confirm/ConfirmService.asmx?WSDL";
 
+    protected $multiplexedSale = "https://pec.shaparak.ir/NewIPGServices/MultiplexedSale/OnlineMultiplexedSalePaymentService.asmx?wsdl";
+
     public function __construct(array $config)
     {
         $this->config = $config;
@@ -27,16 +29,25 @@ class Parsian extends \Alish\PaymentGateway\PaymentGateway
 
     protected function saleClient()
     {
-        return new \SoapClient($this->saleService);;
+        return new \SoapClient($this->saleService);
     }
 
     protected function confirmClient()
     {
-        return new \SoapClient($this->confirmService);;
+        return new \SoapClient($this->confirmService);
+    }
+
+    protected function multiplexSaleClient()
+    {
+        return new \SoapClient($this->multiplexedSale);
     }
 
     public function create(int $amount): PaymentLink
     {
+        if ($this->getPayload('accounts')) {
+            return $this->multiplexSale($amount);
+        }
+
         $body = [
             "LoginAccount" => $this->pin(),
             "Amount" => $amount * 10, // convert toman to rials
@@ -45,6 +56,29 @@ class Parsian extends \Alish\PaymentGateway\PaymentGateway
         ];
 
         $result = $this->saleClient()->SalePaymentRequest(["requestData" => $body]);
+
+        if (
+            $result->SalePaymentRequestResult->Token &&
+            $result->SalePaymentRequestResult->Status === 0
+        ) {
+            $token = $result->SalePaymentRequestResult->Token;
+            return PaymentLink::build($this->gateway(), $token, $this->gateLink($token));
+        }
+
+        throw new PaymentGatewayCreateException($result->SalePaymentRequestResult->Message, $result->SalePaymentRequestResult->Status);
+    }
+
+    public function multiplexSale(int $amount)
+    {
+        $body = [
+            "LoginAccount" => $this->pin(),
+            "Amount" => $amount * 10, // convert toman to rials
+            "OrderId" => $this->getPayload('order_id'),
+            "CallBackUrl" => $this->callback(),
+            "MultiplexedAccounts" => $this->getPayload('accounts')
+        ];
+
+        $result = $this->multiplexSaleClient()->MultiplexedSaleWithIBANPaymentRequest(["requestData" => $body]);
 
         if (
             $result->SalePaymentRequestResult->Token &&
