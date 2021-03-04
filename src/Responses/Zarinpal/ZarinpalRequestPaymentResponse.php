@@ -1,16 +1,15 @@
 <?php
 
 
-namespace Alish\PaymentGateway\Responses;
+namespace Alish\PaymentGateway\Responses\Zarinpal;
 
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class ZarinpalRequestPaymentResponse extends DataTransferObject
 {
-    protected static string $baseUrl = "zarinpal.com/pg/StartPay";
+    protected static string $baseUrl = "https://zarinpal.com/pg/StartPay";
 
     public int $code;
 
@@ -24,7 +23,7 @@ class ZarinpalRequestPaymentResponse extends DataTransferObject
 
     public string $redirectUrl;
 
-    public static function fromJson(array $json, bool $sandbox)
+    public static function fromJson(array $json)
     {
         return new self([
             'code' => $json['code'],
@@ -32,14 +31,12 @@ class ZarinpalRequestPaymentResponse extends DataTransferObject
             'authority' => $json['authority'],
             'feeType' => $json['fee_type'],
             'fee' => $json['fee'],
-            'redirectUrl' => self::redirectUrl($json, $sandbox)
+            'redirectUrl' => self::redirectUrl($json)
         ]);
     }
 
-    protected static function redirectUrl(array $json, bool $sandbox): string
+    protected static function redirectUrl(array $json): string
     {
-        $prefix = $sandbox ? "https://sandbox." : "https://www.";
-
-        return $prefix . self::$baseUrl . Str::start($json['authority'], '/');
+        return self::$baseUrl . Str::start($json['authority'], '/');
     }
 }

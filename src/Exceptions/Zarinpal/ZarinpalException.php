@@ -4,10 +4,10 @@
 namespace Alish\PaymentGateway\Exceptions\Zarinpal;
 
 
-use Alish\PaymentGateway\Exceptions\PaymentRequestException;
+use Alish\PaymentGateway\Exceptions\PaymentException;
 use Throwable;
 
-class ZarinpalPaymentRequestException extends PaymentRequestException
+class ZarinpalException extends PaymentException
 {
 
     public array $validations = [];

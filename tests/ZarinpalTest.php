@@ -3,178 +3,160 @@
 namespace Alish\PaymentGateway\Tests;
 
 use Alish\PaymentGateway\Drivers\Zarinpal;
-use Alish\PaymentGateway\Exceptions\PaymentGatewayCreateException;
-use Alish\PaymentGateway\Exceptions\PaymentVerifyException;
-use Alish\PaymentGateway\PaymentLink;
-use Alish\PaymentGateway\SuccessfulPayment;
+use Alish\PaymentGateway\Exceptions\Zarinpal\ZarinpalException;
+use Alish\PaymentGateway\PaymentGatewayServiceProvider;
+use Alish\PaymentGateway\Responses\Zarinpal\ZarinpalRequestPaymentResponse;
+use Alish\PaymentGateway\Responses\Zarinpal\ZarinpalVerifyPaymentResponse;
+use Alish\PaymentGateway\Tests\Zarinpal\RequestPaymentData;
+use Alish\PaymentGateway\Tests\Zarinpal\VerifyPaymentData;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 use Orchestra\Testbench\TestCase;
 
 class ZarinpalTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function we_can_create_payment_link()
+
+    protected array $config;
+
+    protected function setUp(): void
     {
-        $config = [
-            'merchant_id' => 'merchanid',
+        parent::setUp();
+
+        $this->config = [
+            'merchant_id' => Str::random(36),
             'sandbox' => false,
-            'callback' => 'gateway/zarinpal',
-            'zaringate' => null,
+            'callback_url' => 'callback'
         ];
-
-        $authority = '00001';
-
-        $zarinpal = new Zarinpal($config);
-
-        Http::fake(function (Request $request) use ($authority, $config) {
-            $data = $request->data();
-
-            $this->assertArrayHasKey('MerchantID', $data);
-            $this->assertArrayHasKey('Amount', $data);
-            $this->assertArrayHasKey('CallbackURL', $data);
-            $this->assertArrayHasKey('Description', $data);
-            $this->assertArrayNotHasKey('Mobile', $data);
-            $this->assertArrayNotHasKey('Email', $data);
-
-            $this->assertEquals($data['MerchantID'], $config['merchant_id']);
-            $this->assertEquals($data['CallbackURL'], URL::to($config['callback']));
-
-            return Http::response(['Status' => 100, 'Authority' => $authority], 200);
-        });
-
-        $paymentLink = $zarinpal->payload(['description' => 'description'])->create(10000);
-
-        $this->assertInstanceOf(PaymentLink::class, $paymentLink);
-        $this->assertEquals($paymentLink->getAuthority(), $authority);
-        $this->assertEquals($this->zarinpalRedirectLinkSchema($authority), $paymentLink->getLink());
     }
 
-    /**
-     * @test
-     */
-    public function we_can_create_zaringate_for_payment()
+    protected function getPackageProviders($app)
     {
-        $zaringate = 'zaringate';
-
-        $config = [
-            'merchant_id' => 'merchanid',
-            'sandbox' => false,
-            'callback' => 'gateway/zarinpal',
-            'zaringate' => $zaringate,
-        ];
-
-        $authority = '00001';
-
-        $zarinpal = new Zarinpal($config);
-
-        Http::fake(function (Request $request) use ($authority) {
-            return Http::response(['Status' => 100, 'Authority' => $authority], 200);
-        });
-
-        $paymentLink = $zarinpal->payload(['description' => 'description'])->create(10000);
-
-        $this->assertInstanceOf(PaymentLink::class, $paymentLink);
-        $this->assertEquals($paymentLink->getAuthority(), $authority);
-        $this->assertEquals($this->zarinpalRedirectLinkSchema($authority, $zaringate), $paymentLink->getLink());
+        return [PaymentGatewayServiceProvider::class];
     }
 
-    protected function zarinpalRedirectLinkSchema(string $authority, ?string $zaringate = null)
+    protected function getConfig(array $overrides = [])
     {
-        return 'https://www.zarinpal.com/pg/StartPay/'.$authority.($zaringate ? '/'.$zaringate : '');
+        return array_merge($this->config, $overrides);
     }
 
-    /**
-     * @test
-     */
-    public function we_can_user_zarinpal_sandbox()
+    protected function zarinpal()
     {
-        $config = [
-            'merchant_id' => 'merchanid',
-            'sandbox' => true,
-            'callback' => 'gateway/zarinpal',
-            'zaringate' => null,
-        ];
-
-        $authority = '00001';
-
-        $zarinpal = new Zarinpal($config);
-
-        Http::fake(function (Request $request) use ($authority) {
-            return Http::response(['Status' => 100, 'Authority' => $authority], 200);
-        });
-
-        $paymentLink = $zarinpal->payload(['description' => 'description'])->create(10000);
-
-        $this->assertInstanceOf(PaymentLink::class, $paymentLink);
-        $this->assertEquals($paymentLink->getAuthority(), $authority);
-        $this->assertStringContainsString($authority, $paymentLink->getLink());
-        $this->assertStringContainsString('https://sandbox.', $paymentLink->getLink());
+        return new Zarinpal($this->getConfig());
     }
 
-    /**
-     * @test
-     */
-    public function we_can_verify_payment_was_successful()
+    public function test_request_payment_work_as_expected()
     {
-        $config = [
-            'merchant_id' => 'merchanid',
-            'sandbox' => true,
-            'callback' => 'gateway/zarinpal',
-            'zaringate' => null,
-        ];
-
-        $refID = '00001';
-
-        $zarinpal = new Zarinpal($config);
-
-        Http::fake(function (Request $request) use ($refID) {
-            return Http::response(['Status' => 100, 'RefID' => $refID], 200);
-        });
-
-        $successful = $zarinpal->payload(['amount' => 10000, 'authority' => '01'])->verify();
-
-        $this->assertInstanceOf(SuccessfulPayment::class, $successful);
-        $this->assertEquals($successful->getRefId(), $refID);
-    }
-
-    /**
-     * @test
-     */
-    public function if_create_request_was_unsuccessful_we_get_error()
-    {
-        $zarinpal = new Zarinpal([
-            'merchant_id' => 'merchanid',
-            'callback' => 'gateway/zarinpal',
-        ]);
+        $zarinpal = $this->zarinpal();
 
         Http::fake(function (Request $request) {
-            return Http::response('response', 500);
+            $this->assertEquals("https://api.zarinpal.com/pg/v4/payment/request.json", $request->url());
+
+            $this->assertEquals(
+                $this->config['merchant_id'], $request->data()['merchant_id']
+            );
+
+            $this->assertEquals(
+                1000, $request->data()['amount']
+            );
+
+            $this->assertEquals(
+                'test description', $request->data()['description']
+            );
+
+            $this->assertEquals(
+                "http://localhost/callback", $request->data()['callback_url']
+            );
+
+            $this->assertEquals(
+                '09123456789', $request->data()['metadata']['mobile']
+            );
+
+            $this->assertEquals(
+                'test@test.com', $request->data()['metadata']['email']
+            );
+
+            return Http::response([
+                'data' => [
+                    'code' => 100,
+                    'authority' => '0000001',
+                    'message' => 'successful',
+                    'fee_type' => 'merchant',
+                    'fee' => 0
+                ],
+                "errors" => []
+            ], 200);
         });
 
-        $this->expectException(PaymentGatewayCreateException::class);
+        /** @var ZarinpalRequestPaymentResponse $response */
+        $response = $zarinpal->request(new RequestPaymentData);
 
-        $zarinpal->payload(['description' => 'description'])->create(10000);
+        $this->assertEquals('0000001', $response->authority);
+        $this->assertEquals(100, $response->code);
+        $this->assertEquals('successful', $response->message);
+        $this->assertEquals('merchant', $response->feeType);
     }
 
-    /**
-     * @test
-     */
-    public function if_verify_payment_was_unsuccessful_we_get_error()
+    public function test_verify_work_as_expected()
     {
-        $zarinpal = new Zarinpal([
-            'merchant_id' => 123,
-        ]);
+        $zarinpal = $this->zarinpal();
 
         Http::fake(function (Request $request) {
-            return Http::response('response', 500);
+            $this->assertEquals("https://api.zarinpal.com/pg/v4/payment/verify.json", $request->url());
+
+            $this->assertEquals(
+                $this->config['merchant_id'], $request->data()['merchant_id']
+            );
+
+            $this->assertEquals(
+                1000, $request->data()['amount']
+            );
+
+            $this->assertEquals(
+                '000001', $request->data()['authority']
+            );
+
+
+            return Http::response([
+                'data' => [
+                    'code' => 100,
+                    'ref_id' => 1,
+                    'message' => 'successful',
+                    'fee_type' => 'merchant',
+                    'fee' => 0
+                ],
+                "errors" => []
+            ], 200);
         });
 
-        $this->expectException(PaymentVerifyException::class);
+        /** @var ZarinpalVerifyPaymentResponse $response */
+        $response = $zarinpal->verify(new VerifyPaymentData());
 
-        $zarinpal->payload(['amount' => 10000, 'authority' => 'authority'])->verify();
+        $this->assertEquals(1, $response->refId);
+        $this->assertEquals(100, $response->code);
+        $this->assertEquals('successful', $response->message);
+        $this->assertEquals('merchant', $response->feeType);
+    }
+
+    public function test_request_payment_failed()
+    {
+        $zarinpal = $this->zarinpal();
+
+        $this->expectException(ZarinpalException::class);
+
+        Http::fake(function (Request $request) {
+            return Http::response([
+                'data' => [
+                    'code' => 102,
+                    'message' => 'failed',
+                ],
+                "errors" => [
+                    "validations" => []
+                ]
+            ], 403);
+        });
+
+        /** @var ZarinpalRequestPaymentResponse $response */
+        $response = $zarinpal->request(new RequestPaymentData);
     }
 }

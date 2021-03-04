@@ -13,16 +13,18 @@ return [
 
     'default' => env('PAYMENT_GATEWAY_DRIVER', 'zarinpal'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Zarinpal
+    |--------------------------------------------------------------------------
+    |
+    | zarinpal config
+    |
+    */
+
     'zarinpal' => [
         'merchant_id' => env('ZARINPAL_MERCHANT_ID'),
-        'sandbox' => env('ZARINPAL_SANDBOX', true),
-        'callback' => env('ZARINPAL_CALLBACK', 'gateway/zarinpal'),
-        'zaringate' => env('ZARINPAL_ZARINGATE', null),
+        'callback_url' => env('ZARINPAL_CALLBACK', 'gateway/zarinpal')
     ],
-
-    'parsian' => [
-        'pin' => env('PARSIAN_PIN'),
-        'callback' => env('PARSIAN_CALLBACK', 'gateway/parsian'),
-    ]
 
 ];

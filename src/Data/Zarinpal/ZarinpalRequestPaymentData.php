@@ -3,10 +3,9 @@
 
 namespace Alish\PaymentGateway\Data\Zarinpal;
 
-use Alish\PaymentGateway\Data\RequestPaymentData;
 use Illuminate\Support\Arr;
 
-class ZarinpalRequestPaymentData implements ZarinpalData
+class ZarinpalRequestPaymentData
 {
     protected ?string $merchantId = null;
 

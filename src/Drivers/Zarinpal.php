@@ -2,15 +2,13 @@
 
 namespace Alish\PaymentGateway\Drivers;
 
-
 use Alish\PaymentGateway\Data\Zarinpal\ZarinpalRequestPaymentData;
-use Alish\PaymentGateway\Exceptions\PaymentVerifyException;
-use Alish\PaymentGateway\Exceptions\Zarinpal\ZarinpalPaymentRequestException;
-use Alish\PaymentGateway\Responses\RequestPaymentResponse;
-use Alish\PaymentGateway\Responses\ZarinpalRequestPaymentResponse;
-use Alish\PaymentGateway\SuccessfulPayment;
-use Alish\PaymentGateway\Utils\HasConfig;
-use Alish\PaymentGateway\Utils\ZarinpalErrorCodes;
+use Alish\PaymentGateway\Data\Zarinpal\ZarinpalVerifyPaymentData;
+use Alish\PaymentGateway\Data\ZarinpalData;
+use Alish\PaymentGateway\Exceptions\Zarinpal\ZarinpalException;
+use Alish\PaymentGateway\Listener\ZarinpalListener;
+use Alish\PaymentGateway\Responses\Zarinpal\ZarinpalRequestPaymentResponse;
+use Alish\PaymentGateway\Responses\Zarinpal\ZarinpalVerifyPaymentResponse;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\URL;
@@ -18,17 +16,20 @@ use Illuminate\Support\Str;
 
 class Zarinpal
 {
-    use HasConfig;
+    protected string $baseUrl = 'https://api.zarinpal.com/pg/v4/payment';
 
-    protected string $baseUrl = 'zarinpal.com/pg/v4/payment/';
+    protected array $config;
 
     public function __construct(array $config)
     {
         $this->config = $config;
     }
 
-    public function request(ZarinpalRequestPaymentData $data, RequestPaymentResponse $successfulRequestResponse)
+    public function request(ZarinpalData $requestPaymentData, ?ZarinpalListener $listener = null)
     {
+        /** @var ZarinpalRequestPaymentData $data */
+        $data = $requestPaymentData->zarinpal();
+
         $response = Http::post(
             $this->requestPayEndpoint(),
             $data->json([
@@ -38,35 +39,48 @@ class Zarinpal
         );
 
         if ($response->successful() && $response->json('data.code') === 100) {
-            $successfulRequestResponse->zarinpal(
-                ZarinpalRequestPaymentResponse::fromJson(
-                    $response->json('data'),
-                    $this->sandbox()
-                )
+            $response = ZarinpalRequestPaymentResponse::fromJson(
+                $response->json('data')
             );
+
+            $listener && $listener->zarinpal(
+                $response
+            );
+
+            return $response;
         }
 
-        throw (new ZarinpalPaymentRequestException(
+        throw (new ZarinpalException(
             $response->json('errors.message'),
             $response->json('errors.code')
         ))->validations($response->json('errors.validations'));
     }
 
-    public function verify(): SuccessfulPayment
+    public function verify(ZarinpalData $data, ?ZarinpalListener $listener = null)
     {
-        $body = [
-            'MerchantID' => $this->merchantId(),
-            'Amount' => $this->getPayload('amount'),
-            'Authority' => $this->getPayload('authority'),
-        ];
+        /** @var ZarinpalVerifyPaymentData $data */
+        $data = $data->zarinpal();
 
-        $response = Http::post($this->apiEndpoint('rest/WebGate/PaymentVerification.json'), $body);
+        $response = Http::post($this->verifyEndpoint(), $data->json([
+            'merchant_id' => $this->merchantId()
+        ]));
 
-        if ($response->successful() && $response['Status'] === 100) {
-            return SuccessfulPayment::make($response['RefID']);
+        if ($response->successful() && ($response->json('data.code') === 100 || $response->json('data.code') === 101)) {
+            $response = ZarinpalVerifyPaymentResponse::fromJson(
+                $response->json('data')
+            );
+
+            $listener && $listener->zarinpal(
+                $response
+            );
+
+            return $response;
         }
 
-        throw new PaymentVerifyException(ZarinpalErrorCodes::message($this->errorCode($response)), $this->errorCode($response));
+        throw (new ZarinpalException(
+            $response->json('errors.message'),
+            $response->json('errors.code')
+        ))->validations($response->json('errors.validations'));
     }
 
     protected function callbackUrl(): string
@@ -96,8 +110,7 @@ class Zarinpal
 
     protected function apiEndpoint(string $url): string
     {
-        $prefix = $this->sandbox() ? 'https://sandbox.' : 'https://api.';
 
-        return $prefix . $this->baseUrl . Str::start($url, '/');
+        return $this->baseUrl . Str::start($url, '/');
     }
 }

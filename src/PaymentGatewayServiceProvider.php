@@ -10,12 +10,16 @@ class PaymentGatewayServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../config/payment-gateway.php' => config_path('payment-gateway.php'),
-        ], 'payment-gateway-config');
+        ]);
     }
 
     public function register()
     {
-        $this->app->bind(PaymentGatewayManager::class, function ($app) {
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/payment-gateway.php', 'payment-gateway'
+        );
+
+        $this->app->bind('payment-gateway', function ($app) {
             return new PaymentGatewayManager($app);
         });
     }
@@ -23,7 +27,7 @@ class PaymentGatewayServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            PaymentGatewayManager::class,
+            'payment-gateway',
         ];
     }
 }
