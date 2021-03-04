@@ -2,7 +2,7 @@
 
 namespace Alish\PaymentGateway\Http\Requests;
 
-use Alish\PaymentGateway\Exception\PaymentVerifyException;
+use Alish\PaymentGateway\Exceptions\PaymentVerifyException;
 use Alish\PaymentGateway\Facade\PaymentGateway;
 use Alish\PaymentGateway\SuccessfulPayment;
 use Illuminate\Foundation\Http\FormRequest;

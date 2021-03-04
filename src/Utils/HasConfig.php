@@ -4,7 +4,7 @@
 namespace Alish\PaymentGateway\Utils;
 
 
-use Alish\PaymentGateway\Exception\ConfigNotFoundException;
+use Alish\PaymentGateway\Exceptions\ConfigNotFoundException;
 
 trait HasConfig
 {

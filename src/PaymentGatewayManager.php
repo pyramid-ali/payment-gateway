@@ -32,4 +32,12 @@ class PaymentGatewayManager extends Manager
     {
         return $this->config['payment-gateway'];
     }
+
+    public function __call($method, $parameters)
+    {
+        $data = $parameters[0];
+        $parameter = $data->{$this->driver()}();
+
+        return $this->driver()->$method($parameter);
+    }
 }

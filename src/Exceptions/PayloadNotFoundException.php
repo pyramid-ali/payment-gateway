@@ -1,12 +1,10 @@
 <?php
 
 
-namespace Alish\PaymentGateway\Exception;
+namespace Alish\PaymentGateway\Exceptions;
 
 
-use Throwable;
-
-class ConfigNotFoundException extends \Exception
+class PayloadNotFoundException extends \Exception
 {
 
     public function __construct($key)

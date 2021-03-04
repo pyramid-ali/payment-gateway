@@ -5,10 +5,10 @@ namespace Alish\PaymentGateway\Drivers;
 
 
 use Alish\PaymentGateway\Contracts\PaymentGateway;
-use Alish\PaymentGateway\Exception\PaymentGatewayCreateException;
+use Alish\PaymentGateway\Exceptions\PaymentGatewayCreateException;
 use Alish\PaymentGateway\Utils\HasConfig;
 use Illuminate\Support\Facades\URL;
-use Alish\PaymentGateway\Exception\PaymentVerifyException;
+use Alish\PaymentGateway\Exceptions\PaymentVerifyException;
 use Alish\PaymentGateway\PaymentLink;
 use Alish\PaymentGateway\SuccessfulPayment;
 

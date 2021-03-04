@@ -2,19 +2,16 @@
 
 namespace Alish\PaymentGateway\Contracts;
 
-use Alish\PaymentGateway\Exception\PaymentGatewayCreateException;
-use Alish\PaymentGateway\Exception\PaymentVerifyException;
+use Alish\PaymentGateway\Data\RequestPaymentData;
+use Alish\PaymentGateway\Exceptions\PaymentGatewayCreateException;
+use Alish\PaymentGateway\Exceptions\PaymentVerifyException;
 use Alish\PaymentGateway\PaymentLink;
 use Alish\PaymentGateway\SuccessfulPayment;
 
 interface PaymentGateway
 {
-    /**
-     * @param  int  $amount
-     * @return PaymentLink
-     * @throws PaymentGatewayCreateException
-     */
-    public function create(int $amount): PaymentLink;
+
+    public function request(RequestPaymentData $data);
 
     /**
      * @param array|object $payload

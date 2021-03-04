@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Alish\PaymentGateway\Exception;
+namespace Alish\PaymentGateway\Exceptions;
 
 
 use Throwable;

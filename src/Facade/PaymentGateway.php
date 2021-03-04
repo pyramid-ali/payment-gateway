@@ -2,10 +2,13 @@
 
 namespace Alish\PaymentGateway\Facade;
 
+use Alish\PaymentGateway\Data\RequestPaymentData;
 use Alish\PaymentGateway\Fakes\PaymentGatewayFake;
+use Alish\PaymentGateway\Responses\RequestPaymentResponse;
 use Illuminate\Support\Facades\Facade;
 
 /**
+ * @method static request(RequestPaymentData $data, RequestPaymentResponse $response)
  * @method static payload($payload)
  */
 class PaymentGateway extends Facade

@@ -4,8 +4,8 @@
 namespace Alish\PaymentGateway;
 
 use Alish\PaymentGateway\Contracts\PaymentGateway as Gateway;
-use Alish\PaymentGateway\Exception\PayloadDriverNotFoundException;
-use Alish\PaymentGateway\Exception\PayloadNotFoundException;
+use Alish\PaymentGateway\Exceptions\PayloadDriverNotFoundException;
+use Alish\PaymentGateway\Exceptions\PayloadNotFoundException;
 
 abstract class PaymentGateway implements Gateway
 {
