@@ -2,9 +2,6 @@
 
 namespace Alish\PaymentGateway\Http\Requests;
 
-use Alish\PaymentGateway\Exceptions\PaymentVerifyException;
-use Alish\PaymentGateway\Facade\PaymentGateway;
-use Alish\PaymentGateway\SuccessfulPayment;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ZarinpalRequest extends FormRequest
@@ -30,15 +27,5 @@ class ZarinpalRequest extends FormRequest
     public function authority()
     {
         return $this->get('Authority');
-    }
-
-    /**
-     * @param  int  $amount
-     * @return SuccessfulPayment
-     * @throws PaymentVerifyException
-     */
-    public function verify(int $amount): SuccessfulPayment
-    {
-        return PaymentGateway::driver('zarinpal')->verify($amount, $this->authority());
     }
 }
