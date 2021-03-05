@@ -2,7 +2,6 @@
 
 namespace Alish\PaymentGateway;
 
-use Alish\PaymentGateway\Drivers\Parsian;
 use Alish\PaymentGateway\Drivers\Zarinpal;
 use Illuminate\Support\Manager;
 
